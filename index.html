@@ -12,7 +12,6 @@
     --navy: #1F3864;
     --blue: #2E75B6;
     --blue-light: #D6E8F7;
-    --blue-mid: #6AAED6;
     --gold: #C9A84C;
     --gold-light: #FDF3DC;
     --text: #1a1a2e;
@@ -23,286 +22,56 @@
     --radius: 12px;
   }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    padding: 0;
-  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
 
-  .hero {
-    background: var(--navy);
-    color: white;
-    padding: 2.5rem 1.5rem 2rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
+  .hero { background: var(--navy); color: white; padding: 2.5rem 1.5rem 2rem; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 200px; height: 200px; border-radius: 50%; background: rgba(46,117,182,0.25); }
+  .hero::after { content: ''; position: absolute; bottom: -40px; left: -40px; width: 140px; height: 140px; border-radius: 50%; background: rgba(201,168,76,0.15); }
+  .hero-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; font-weight: 500; }
+  .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(1.6rem, 5vw, 2.2rem); line-height: 1.2; margin-bottom: 0.75rem; position: relative; z-index: 1; }
+  .hero p { font-size: 15px; color: rgba(255,255,255,0.75); max-width: 380px; margin: 0 auto; line-height: 1.6; position: relative; z-index: 1; }
 
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -60px; right: -60px;
-    width: 200px; height: 200px;
-    border-radius: 50%;
-    background: rgba(46,117,182,0.25);
-  }
-
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: -40px; left: -40px;
-    width: 140px; height: 140px;
-    border-radius: 50%;
-    background: rgba(201,168,76,0.15);
-  }
-
-  .hero-label {
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.75rem;
-    font-weight: 500;
-  }
-
-  .hero h1 {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(1.6rem, 5vw, 2.2rem);
-    line-height: 1.2;
-    margin-bottom: 0.75rem;
-    position: relative;
-    z-index: 1;
-  }
-
-  .hero p {
-    font-size: 15px;
-    color: rgba(255,255,255,0.75);
-    max-width: 380px;
-    margin: 0 auto;
-    line-height: 1.6;
-    position: relative;
-    z-index: 1;
-  }
-
-  .tabs {
-    display: flex;
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-
-  .tab {
-    flex: 1;
-    min-width: 140px;
-    padding: 1rem 0.75rem;
-    text-align: center;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--text-muted);
-    cursor: pointer;
-    border-bottom: 3px solid transparent;
-    transition: all 0.2s;
-    white-space: nowrap;
-    background: none;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    font-family: inherit;
-  }
-
-  .tab.active {
-    color: var(--blue);
-    border-bottom-color: var(--blue);
-  }
+  .tabs { display: flex; background: var(--surface); border-bottom: 1px solid var(--border); overflow-x: auto; scrollbar-width: none; }
+  .tab { flex: 1; min-width: 140px; padding: 1rem 0.75rem; text-align: center; font-size: 13px; font-weight: 500; color: var(--text-muted); cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.2s; white-space: nowrap; background: none; border-top: none; border-left: none; border-right: none; font-family: inherit; }
+  .tab.active { color: var(--blue); border-bottom-color: var(--blue); }
 
   .panel { display: none; padding: 1.5rem; max-width: 600px; margin: 0 auto; }
   .panel.active { display: block; }
 
-  .panel-intro {
-    background: var(--blue-light);
-    border-left: 4px solid var(--blue);
-    border-radius: 0 var(--radius) var(--radius) 0;
-    padding: 1rem 1.25rem;
-    margin-bottom: 1.5rem;
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--navy);
-  }
+  .panel-intro { background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 var(--radius) var(--radius) 0; padding: 1rem 1.25rem; margin-bottom: 1.5rem; font-size: 14px; line-height: 1.6; color: var(--navy); }
 
   .field { margin-bottom: 1.25rem; }
+  label { display: block; font-size: 13px; font-weight: 500; color: var(--text-muted); margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.5px; }
+  .field-hint { font-size: 12px; color: var(--text-muted); margin-bottom: 0.5rem; font-style: italic; text-transform: none; letter-spacing: 0; font-weight: 400; }
+  .optional-tag { font-size: 11px; background: var(--gold-light); color: #7a5a00; padding: 2px 7px; border-radius: 4px; font-style: normal; font-weight: 500; margin-left: 6px; text-transform: none; letter-spacing: 0; vertical-align: middle; }
 
-  label {
-    display: block;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--text-muted);
-    margin-bottom: 0.4rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  .field-hint {
-    font-size: 12px;
-    color: var(--text-muted);
-    margin-bottom: 0.5rem;
-    font-style: italic;
-    text-transform: none;
-    letter-spacing: 0;
-    font-weight: 400;
-  }
-
-  input[type="text"], input[type="number"], textarea, select {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    color: var(--text);
-    background: var(--surface);
-    transition: border-color 0.2s;
-    -webkit-appearance: none;
-  }
-
-  input[type="text"]:focus, textarea:focus, select:focus, input[type="number"]:focus {
-    outline: none;
-    border-color: var(--blue);
-  }
-
+  input[type="text"], input[type="number"], textarea, select { width: 100%; padding: 0.75rem 1rem; border: 1.5px solid var(--border); border-radius: var(--radius); font-family: 'DM Sans', sans-serif; font-size: 15px; color: var(--text); background: var(--surface); transition: border-color 0.2s; -webkit-appearance: none; }
+  input:focus, textarea:focus, select:focus { outline: none; border-color: var(--blue); }
   textarea { resize: vertical; min-height: 70px; }
+  select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a5a7a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; }
 
-  select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a5a7a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
-    padding-right: 2.5rem;
-  }
-
-  .generate-btn {
-    width: 100%;
-    padding: 1rem;
-    background: var(--navy);
-    color: white;
-    border: none;
-    border-radius: var(--radius);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    margin-top: 0.5rem;
-    transition: background 0.2s, transform 0.1s;
-    letter-spacing: 0.3px;
-  }
-
+  .generate-btn { width: 100%; padding: 1rem; background: var(--navy); color: white; border: none; border-radius: var(--radius); font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 0.5rem; transition: background 0.2s, transform 0.1s; letter-spacing: 0.3px; }
   .generate-btn:hover { background: #162d55; }
   .generate-btn:active { transform: scale(0.99); }
 
-  .result-box {
-    display: none;
-    margin-top: 1.5rem;
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius);
-    overflow: hidden;
-  }
-
+  .result-box { display: none; margin-top: 1.5rem; border: 1.5px solid var(--border); border-radius: var(--radius); overflow: hidden; }
   .result-box.visible { display: block; }
-
-  .result-header {
-    background: var(--navy);
-    color: white;
-    padding: 0.75rem 1rem;
-    font-size: 13px;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .copy-btn {
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.3);
-    color: white;
-    padding: 0.35rem 0.9rem;
-    border-radius: 6px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
-
+  .result-header { background: var(--navy); color: white; padding: 0.75rem 1rem; font-size: 13px; font-weight: 500; display: flex; align-items: center; justify-content: space-between; }
+  .copy-btn { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 0.35rem 0.9rem; border-radius: 6px; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; cursor: pointer; transition: background 0.2s; }
   .copy-btn:hover { background: rgba(255,255,255,0.25); }
   .copy-btn.copied { background: rgba(46,213,115,0.3); border-color: rgba(46,213,115,0.5); }
+  .result-text { padding: 1rem; font-size: 14px; line-height: 1.7; color: var(--text); background: var(--surface); white-space: pre-wrap; word-break: break-word; }
 
-  .result-text {
-    padding: 1rem;
-    font-size: 14px;
-    line-height: 1.7;
-    color: var(--text);
-    background: var(--surface);
-    white-space: pre-wrap;
-    word-break: break-word;
-  }
-
-  .steps {
-    background: var(--gold-light);
-    border-radius: var(--radius);
-    padding: 1.25rem;
-    margin-top: 1rem;
-    font-size: 13px;
-    line-height: 1.7;
-    color: #7a5a00;
-  }
-
-  .steps strong {
-    display: block;
-    font-size: 13px;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: #5a4000;
-  }
-
+  .steps { background: var(--gold-light); border-radius: var(--radius); padding: 1.25rem; margin-top: 1rem; font-size: 13px; line-height: 1.7; color: #7a5a00; }
+  .steps strong { display: block; font-size: 13px; font-weight: 600; margin-bottom: 0.5rem; color: #5a4000; }
   .steps ol { padding-left: 1.2rem; }
   .steps li { margin-bottom: 0.3rem; }
 
-  .ai-links {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.75rem;
-    margin-top: 1rem;
-  }
-
-  .ai-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0.75rem;
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius);
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--text);
-    text-decoration: none;
-    background: var(--surface);
-    transition: border-color 0.2s, background 0.2s;
-  }
-
+  .ai-links { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 1rem; }
+  .ai-link { display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem; border: 1.5px solid var(--border); border-radius: var(--radius); font-size: 14px; font-weight: 500; color: var(--text); text-decoration: none; background: var(--surface); transition: border-color 0.2s, background 0.2s; }
   .ai-link:hover { border-color: var(--blue); background: var(--blue-light); }
 
-  .footer-note {
-    text-align: center;
-    padding: 2rem 1.5rem;
-    font-size: 13px;
-    color: var(--text-muted);
-    line-height: 1.6;
-    border-top: 1px solid var(--border);
-    margin-top: 1rem;
-  }
-
+  .footer-note { text-align: center; padding: 2rem 1.5rem; font-size: 13px; color: var(--text-muted); line-height: 1.6; border-top: 1px solid var(--border); margin-top: 1rem; }
   .footer-note strong { color: var(--navy); }
 </style>
 </head>
@@ -319,14 +88,28 @@
   <button class="tab" onclick="showTab('naechste-schritte', this)">🚀 Ich habe eine Richtung</button>
 </div>
 
+<!-- TAB 1: ORIENTIERUNG -->
 <div id="orientierung" class="panel active">
   <div class="panel-intro">
     Du weißt noch nicht genau, wohin die Reise geht? Kein Thema. Füll die Felder unten aus – je ehrlicher, desto besser. Dann kopierst Du den fertigen Text und gibst ihn in eine KI wie ChatGPT oder Gemini ein.
   </div>
 
   <div class="field">
-    <label>Dein Alter</label>
-    <input type="number" id="o-alter" placeholder="z.B. 16" min="13" max="25">
+    <label>Dein Geburtsjahr</label>
+    <input type="number" id="o-jahrgang" placeholder="z.B. 2008" min="1995" max="2015">
+  </div>
+
+  <div class="field">
+    <label>Bundesland</label>
+    <select id="o-bundesland">
+      <option value="">Bitte wählen …</option>
+      <option>Baden-Württemberg</option><option>Bayern</option><option>Berlin</option>
+      <option>Brandenburg</option><option>Bremen</option><option>Hamburg</option>
+      <option>Hessen</option><option>Mecklenburg-Vorpommern</option><option>Niedersachsen</option>
+      <option>Nordrhein-Westfalen</option><option>Rheinland-Pfalz</option><option>Saarland</option>
+      <option>Sachsen</option><option>Sachsen-Anhalt</option><option>Schleswig-Holstein</option>
+      <option>Thüringen</option>
+    </select>
   </div>
 
   <div class="field">
@@ -365,6 +148,12 @@
     <textarea id="o-wichtig" placeholder="Was soll Dein Beruf Dir geben?" rows="2"></textarea>
   </div>
 
+  <div class="field">
+    <label>Besondere Umstände <span class="optional-tag">freiwillig</span></label>
+    <span class="field-hint">z.B. eine Beeinträchtigung, gesundheitliche Einschränkung oder andere Besonderheit, die bei der Empfehlung eine Rolle spielen sollte.</span>
+    <textarea id="o-besonderes" placeholder="Nur wenn Du möchtest – das hilft der KI, passendere Empfehlungen zu geben." rows="2"></textarea>
+  </div>
+
   <button class="generate-btn" onclick="generateOrientierung()">✨ Meinen persönlichen Prompt erstellen</button>
 
   <div class="result-box" id="o-result">
@@ -391,14 +180,28 @@
   </div>
 </div>
 
+<!-- TAB 2: NÄCHSTE SCHRITTE -->
 <div id="naechste-schritte" class="panel">
   <div class="panel-intro">
     Du weißt ungefähr, in welche Richtung Du willst – aber der nächste Schritt fühlt sich noch unklar an? Hier bekommst Du einen konkreten Plan, nicht nur gute Ratschläge.
   </div>
 
   <div class="field">
-    <label>Dein Alter</label>
-    <input type="number" id="n-alter" placeholder="z.B. 17" min="13" max="25">
+    <label>Dein Geburtsjahr</label>
+    <input type="number" id="n-jahrgang" placeholder="z.B. 2007" min="1995" max="2015">
+  </div>
+
+  <div class="field">
+    <label>Bundesland</label>
+    <select id="n-bundesland">
+      <option value="">Bitte wählen …</option>
+      <option>Baden-Württemberg</option><option>Bayern</option><option>Berlin</option>
+      <option>Brandenburg</option><option>Bremen</option><option>Hamburg</option>
+      <option>Hessen</option><option>Mecklenburg-Vorpommern</option><option>Niedersachsen</option>
+      <option>Nordrhein-Westfalen</option><option>Rheinland-Pfalz</option><option>Saarland</option>
+      <option>Sachsen</option><option>Sachsen-Anhalt</option><option>Schleswig-Holstein</option>
+      <option>Thüringen</option>
+    </select>
   </div>
 
   <div class="field">
@@ -442,6 +245,12 @@
     <textarea id="n-bisher" placeholder="Auch 'noch nichts' ist eine gültige Antwort." rows="2"></textarea>
   </div>
 
+  <div class="field">
+    <label>Besondere Umstände <span class="optional-tag">freiwillig</span></label>
+    <span class="field-hint">z.B. eine Beeinträchtigung, gesundheitliche Einschränkung oder andere Besonderheit, die bei der Empfehlung eine Rolle spielen sollte.</span>
+    <textarea id="n-besonderes" placeholder="Nur wenn Du möchtest – das hilft der KI, passendere Empfehlungen zu geben." rows="2"></textarea>
+  </div>
+
   <button class="generate-btn" onclick="generateSchritte()">✨ Meinen persönlichen Prompt erstellen</button>
 
   <div class="result-box" id="n-result">
@@ -482,19 +291,26 @@ function showTab(id, btn) {
   btn.classList.add('active');
 }
 
-function val(id) {
-  return (document.getElementById(id)?.value || '').trim();
+function val(id) { return (document.getElementById(id)?.value || '').trim(); }
+
+function getAlter(jahrgang) {
+  if (!jahrgang) return '[Alter eintragen]';
+  const alter = new Date().getFullYear() - parseInt(jahrgang);
+  return alter + ' Jahre';
 }
 
 function generateOrientierung() {
-  const alter = val('o-alter');
+  const jahrgang = val('o-jahrgang');
+  const bundesland = val('o-bundesland');
   const abschluss = val('o-abschluss');
   const staerken = val('o-staerken');
   const spass = val('o-spass');
   const nicht = val('o-nicht');
   const wichtig = val('o-wichtig');
+  const besonderes = val('o-besonderes');
 
-  const prompt = `Ich bin ${alter || '[Alter eintragen]'} Jahre alt.
+  let prompt = `Ich bin ${getAlter(jahrgang)}${jahrgang ? ' (Jahrgang ' + jahrgang + ')' : ''}.
+Ich lebe in: ${bundesland || '[Bundesland eintragen]'}
 
 Mein Schulabschluss (aktuell oder geplant): ${abschluss || '[Abschluss eintragen]'}
 
@@ -508,9 +324,13 @@ Das möchte ich auf keinen Fall in meinem Beruf:
 ${nicht || '[hier eintragen]'}
 
 Das ist mir bei einem Beruf wichtig:
-${wichtig || '[hier eintragen]'}
+${wichtig || '[hier eintragen]'}`;
 
-Bitte nenne mir 5 konkrete Berufe oder Ausbildungsrichtungen, die wirklich zu mir passen könnten – basierend auf allem, was ich oben geschrieben habe. Erkläre kurz und direkt, warum jeder Beruf zu mir passt. Nenn mir für jeden Beruf auch einen einzigen konkreten ersten Schritt, den ich noch diese Woche tun kann, um mehr herauszufinden. Schreib so, als würdest Du direkt mit mir reden – nicht förmlich, nicht allgemein.`;
+  if (besonderes) {
+    prompt += `\n\nBesondere Umstände, die bei der Empfehlung eine Rolle spielen sollten:\n${besonderes}`;
+  }
+
+  prompt += `\n\nBitte nenne mir 5 konkrete Berufe oder Ausbildungsrichtungen, die wirklich zu mir passen könnten – basierend auf allem, was ich oben geschrieben habe. Berücksichtige dabei auch die Ausbildungsmöglichkeiten in meinem Bundesland. Erkläre kurz und direkt, warum jeder Beruf zu mir passt. Nenn mir für jeden Beruf auch einen einzigen konkreten ersten Schritt, den ich noch diese Woche tun kann, um mehr herauszufinden. Schreib so, als würdest Du direkt mit mir reden – nicht förmlich, nicht allgemein.`;
 
   document.getElementById('o-result-text').textContent = prompt;
   document.getElementById('o-result').classList.add('visible');
@@ -520,14 +340,17 @@ Bitte nenne mir 5 konkrete Berufe oder Ausbildungsrichtungen, die wirklich zu mi
 }
 
 function generateSchritte() {
-  const alter = val('n-alter');
+  const jahrgang = val('n-jahrgang');
+  const bundesland = val('n-bundesland');
   const interesse = val('n-interesse');
   const abschluss = val('n-abschluss');
   const stand = val('n-stand');
   const sorge = val('n-sorge');
   const bisher = val('n-bisher');
+  const besonderes = val('n-besonderes');
 
-  const prompt = `Ich bin ${alter || '[Alter eintragen]'} Jahre alt.
+  let prompt = `Ich bin ${getAlter(jahrgang)}${jahrgang ? ' (Jahrgang ' + jahrgang + ')' : ''}.
+Ich lebe in: ${bundesland || '[Bundesland eintragen]'}
 
 Ich interessiere mich beruflich für:
 ${interesse || '[hier eintragen]'}
@@ -541,9 +364,13 @@ Das hält mich zurück oder macht mir Sorgen:
 ${sorge || '[hier eintragen]'}
 
 Was ich bisher schon versucht oder ausprobiert habe:
-${bisher || '[hier eintragen]'}
+${bisher || '[hier eintragen]'}`;
 
-Bitte gib mir einen konkreten 3-Schritte-Plan für die nächsten 4 Wochen – basierend auf meiner konkreten Situation. Keine allgemeinen Tipps. Ich möchte für jeden Schritt wissen: Was genau tue ich? Wann? Wie? Falls ich Hürden erwähnt habe, geh bitte direkt darauf ein. Schreib so, als würdest Du direkt mit mir reden – ehrlich, direkt, motivierend.`;
+  if (besonderes) {
+    prompt += `\n\nBesondere Umstände, die bei der Empfehlung eine Rolle spielen sollten:\n${besonderes}`;
+  }
+
+  prompt += `\n\nBitte gib mir einen konkreten 3-Schritte-Plan für die nächsten 4 Wochen – basierend auf meiner konkreten Situation und meinem Bundesland. Keine allgemeinen Tipps. Ich möchte für jeden Schritt wissen: Was genau tue ich? Wann? Wie? Falls ich Hürden erwähnt habe, geh bitte direkt darauf ein. Schreib so, als würdest Du direkt mit mir reden – ehrlich, direkt, motivierend.`;
 
   document.getElementById('n-result-text').textContent = prompt;
   document.getElementById('n-result').classList.add('visible');
@@ -558,10 +385,7 @@ function copyText(textId, btnId) {
     const btn = document.getElementById(btnId);
     btn.textContent = '✓ Kopiert!';
     btn.classList.add('copied');
-    setTimeout(() => {
-      btn.textContent = 'Kopieren';
-      btn.classList.remove('copied');
-    }, 2500);
+    setTimeout(() => { btn.textContent = 'Kopieren'; btn.classList.remove('copied'); }, 2500);
   }).catch(() => {
     const el = document.getElementById(textId);
     const range = document.createRange();
@@ -573,10 +397,7 @@ function copyText(textId, btnId) {
     const btn = document.getElementById(btnId);
     btn.textContent = '✓ Kopiert!';
     btn.classList.add('copied');
-    setTimeout(() => {
-      btn.textContent = 'Kopieren';
-      btn.classList.remove('copied');
-    }, 2500);
+    setTimeout(() => { btn.textContent = 'Kopieren'; btn.classList.remove('copied'); }, 2500);
   });
 }
 </script>
