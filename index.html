@@ -44,6 +44,8 @@
   label { display: block; font-size: 13px; font-weight: 500; color: var(--text-muted); margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.5px; }
   .field-hint { font-size: 12px; color: var(--text-muted); margin-bottom: 0.5rem; font-style: italic; text-transform: none; letter-spacing: 0; font-weight: 400; }
   .optional-tag { font-size: 11px; background: var(--gold-light); color: #7a5a00; padding: 2px 7px; border-radius: 4px; font-style: normal; font-weight: 500; margin-left: 6px; text-transform: none; letter-spacing: 0; vertical-align: middle; }
+  .book-hint { font-size: 11px; color: var(--blue); margin-bottom: 0.4rem; display: block; font-style: normal; text-transform: none; letter-spacing: 0; font-weight: 400; }
+  .book-hint::before { content: "📖 "; }
 
   input[type="text"], input[type="number"], textarea, select { width: 100%; padding: 0.75rem 1rem; border: 1.5px solid var(--border); border-radius: var(--radius); font-family: 'DM Sans', sans-serif; font-size: 15px; color: var(--text); background: var(--surface); transition: border-color 0.2s; -webkit-appearance: none; }
   input:focus, textarea:focus, select:focus { outline: none; border-color: var(--blue); }
@@ -126,26 +128,37 @@
 
   <div class="field">
     <label>Das kann ich gut</label>
+    <span class="book-hint">Tipp: Kapitel 18 hilft Dir dabei</span>
     <span class="field-hint">z.B. Mathe, Zeichnen, mit Menschen reden, Dinge reparieren, Organisieren, Sport …</span>
     <textarea id="o-staerken" placeholder="Schreib einfach drauflos …" rows="2"></textarea>
   </div>
 
   <div class="field">
     <label>Das macht mir wirklich Spaß</label>
+    <span class="book-hint">Tipp: Kapitel 6 hilft Dir dabei</span>
     <span class="field-hint">z.B. draußen sein, am Computer arbeiten, anderen helfen, Dinge bauen, kreativ sein …</span>
     <textarea id="o-spass" placeholder="Was tust Du, ohne dass jemand Dich bittet?" rows="2"></textarea>
   </div>
 
   <div class="field">
     <label>Das möchte ich auf keinen Fall</label>
+    <span class="book-hint">Tipp: Kapitel 15 hilft Dir dabei</span>
     <span class="field-hint">z.B. den ganzen Tag sitzen, alleine arbeiten, viel reisen, mit Kunden reden …</span>
     <textarea id="o-nicht" placeholder="Sei ehrlich – das hilft wirklich." rows="2"></textarea>
   </div>
 
   <div class="field">
     <label>Das ist mir bei einem Beruf wichtig</label>
+    <span class="book-hint">Tipp: Kapitel 19 hilft Dir dabei</span>
     <span class="field-hint">z.B. viel verdienen / sinnvolle Arbeit / kreativ sein / Sicherheit / Abwechslung …</span>
     <textarea id="o-wichtig" placeholder="Was soll Dein Beruf Dir geben?" rows="2"></textarea>
+  </div>
+
+  <div class="field">
+    <label>Wann und wie möchte ich arbeiten <span class="optional-tag">freiwillig</span></label>
+    <span class="book-hint">Tipp: Kapitel 21 hilft Dir dabei</span>
+    <span class="field-hint">z.B. feste Arbeitszeiten / Schichtarbeit / viel draußen / im Büro / früh morgens / abends …</span>
+    <textarea id="o-arbeitszeit" placeholder="Was passt zu Deinem Rhythmus?" rows="2"></textarea>
   </div>
 
   <div class="field">
@@ -206,6 +219,7 @@
 
   <div class="field">
     <label>Das interessiert Dich beruflich</label>
+    <span class="book-hint">Tipp: Kapitel 18 hilft Dir dabei</span>
     <span class="field-hint">z.B. Mechatronik, Pflege, Informatik, BWL, Erziehung, Handwerk, Medien …</span>
     <textarea id="n-interesse" placeholder="So konkret wie möglich." rows="2"></textarea>
   </div>
@@ -235,6 +249,7 @@
 
   <div class="field">
     <label>Das hält mich zurück oder macht mir Sorgen</label>
+    <span class="book-hint">Tipp: Kapitel 15 hilft Dir dabei</span>
     <span class="field-hint">z.B. Angst vor Absagen, Erwartungen der Eltern, keine Ahnung wo anfangen …</span>
     <textarea id="n-sorge" placeholder="Sei ehrlich – die KI urteilt nicht." rows="2"></textarea>
   </div>
@@ -243,6 +258,13 @@
     <label>Das habe ich bisher schon versucht oder ausprobiert</label>
     <span class="field-hint">z.B. Praktikum, Beratungsgespräch, Bewerbungen geschrieben … oder noch gar nichts.</span>
     <textarea id="n-bisher" placeholder="Auch 'noch nichts' ist eine gültige Antwort." rows="2"></textarea>
+  </div>
+
+  <div class="field">
+    <label>Wann und wie möchte ich arbeiten <span class="optional-tag">freiwillig</span></label>
+    <span class="book-hint">Tipp: Kapitel 21 hilft Dir dabei</span>
+    <span class="field-hint">z.B. feste Arbeitszeiten / Schichtarbeit / viel draußen / im Büro / früh morgens / abends …</span>
+    <textarea id="n-arbeitszeit" placeholder="Was passt zu Deinem Rhythmus?" rows="2"></textarea>
   </div>
 
   <div class="field">
@@ -326,6 +348,11 @@ ${nicht || '[hier eintragen]'}
 Das ist mir bei einem Beruf wichtig:
 ${wichtig || '[hier eintragen]'}`;
 
+  const o_arbeitszeit = val('o-arbeitszeit');
+  if (o_arbeitszeit) {
+    prompt += `\n\nMeine Vorstellungen zu Arbeitszeiten und Arbeitsrhythmus:\n${o_arbeitszeit}`;
+  }
+
   if (besonderes) {
     prompt += `\n\nBesondere Umstände, die bei der Empfehlung eine Rolle spielen sollten:\n${besonderes}`;
   }
@@ -365,6 +392,11 @@ ${sorge || '[hier eintragen]'}
 
 Was ich bisher schon versucht oder ausprobiert habe:
 ${bisher || '[hier eintragen]'}`;
+
+  const n_arbeitszeit = val('n-arbeitszeit');
+  if (n_arbeitszeit) {
+    prompt += `\n\nMeine Vorstellungen zu Arbeitszeiten und Arbeitsrhythmus:\n${n_arbeitszeit}`;
+  }
 
   if (besonderes) {
     prompt += `\n\nBesondere Umstände, die bei der Empfehlung eine Rolle spielen sollten:\n${besonderes}`;
